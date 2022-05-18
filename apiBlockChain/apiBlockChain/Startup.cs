@@ -33,8 +33,15 @@ namespace apiBlockChain
                 (Configuration.GetSection(nameof(BlockChainSetting)));
             services.AddSingleton<IBlockChainSetting>
                 (d => d.GetRequiredService<IOptions<BlockChainSetting>>().Value);
-
             services.AddSingleton<UsuarioService>();
+
+            services.AddCors(Options =>
+            {
+                Options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
 
             services.AddControllers();
         }
@@ -50,7 +57,8 @@ namespace apiBlockChain
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("CorsPolicy");
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

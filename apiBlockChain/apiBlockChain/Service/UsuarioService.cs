@@ -22,7 +22,9 @@ namespace apiBlockChain.Service
 
         public List<Usuario> GetList()
         {
-            return _usuario.Find(d => true).ToList();
+           var data = _usuario.Find(d => true).ToList();
+
+            return data;
         }
 
 

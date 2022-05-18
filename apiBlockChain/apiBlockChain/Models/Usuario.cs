@@ -25,7 +25,7 @@ namespace apiBlockChain.Models
         public string Correo { get; set; }
 
         [BsonElement("fechaNacimiento")]
-        public DateTime FechaNacimiento { get; set; }
+        public string FechaNacimiento { get; set; }
 
         [BsonElement("contrasena")]
         public string Contrasena { get; set; }
