@@ -9,6 +9,7 @@ interface LoginState {
 
 interface FormLogin {
     onLoginUser: () => {}
+    
 }
 
 export default function Login()
@@ -22,7 +23,8 @@ export default function Login()
 
         const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault()
-            console.log( getUsers());
+            window.location.href  = "/Home";
+           // console.log( getUsers());
         }
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
