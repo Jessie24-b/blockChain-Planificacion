@@ -1,26 +1,51 @@
 import { useState } from "react";
+import User from "../types/user.type";
+import { Link } from "react-router-dom"
 
+interface FormRegisterState {
+    inputValues: User
+}
 
-function formRegister (){
+function FormRegister (){
 
-    const initialState = {
-        nombreUsuario: "",
-        contrasenia: "",
-        nombre:"",
-        apellido:"",
-        correo:"",
-        fechaNacimiento:""
+    const [inputValues, setInputValues] = useState<FormRegisterState["inputValues"]>({
+        username: '',
+        name: '',
+        password: '',
+        lastName: '',
+        email: '',
+        birthday: ''
+    })
 
-    };
+    const [validated, setValidated] = useState(false);
 
-    const handleSubmit=()=>{}
-    const handleChange=()=>{
+   
+    const handleSubmit=(e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        console.log(inputValues)
 
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+
+          setValidated(true);
+    }
+
+    
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+        setInputValues({
+            ...inputValues,
+            [e.target.name]: e.target.value
+        })
     }
 
     return(
-
-        <form className='form' onSubmit={handleSubmit}>
+// validated={validated}
+        <form className='form'  onSubmit={handleSubmit}>
         <div className="container">
 
 
@@ -31,7 +56,7 @@ function formRegister (){
                 </div>
 
                 <div className="col-5">
-                    <input className='form-control is-invalid' type="text" id="username" name="username" required />
+                    <input className='form-control is-invalid'onChange={handleChange}  type="text" id="username" name="username" required />
                     <div className="invalid-feedback" id="errorCode">*Campo requerido*</div>
                     <div className="valid-feedback">* Correcto * </div>
 
@@ -42,7 +67,7 @@ function formRegister (){
                     <label className="label" htmlFor="nombre">Nombre</label>
                 </div>
                 <div className="col-5">
-                    <input className='form-control is-invalid' type="text" id="nombre" name="nombre" required />
+                    <input className='form-control is-invalid' onChange={handleChange} type="text" id="name" name="name" required />
                     <div className="invalid-feedback" id="errorCode">*Campo requerido*</div>
                     <div className="valid-feedback">* Correcto * </div>
                 </div>
@@ -56,7 +81,7 @@ function formRegister (){
                     <label htmlFor="apellido">Apellido</label>
                 </div>
                 <div className="col-5">
-                    <input className='form-control is-invalid' type="text" id="apellido" name="apellido" placeholder="Apellido" required />
+                    <input className='form-control is-invalid' onChange={handleChange} type="text" id="lastName" name="lastName" placeholder="Apellido" required />
                     <div className="invalid-feedback" id="errorCode">*Campo requerido*</div>
                     <div className="valid-feedback">* Correcto * </div>
                 </div>
@@ -65,7 +90,7 @@ function formRegister (){
                     <label htmlFor="email">Correo</label>
                 </div>
                 <div className="col-5">
-                    <input className='form-control is-invalid' type="email" id="email" name="email" placeholder="exameple@gmail.com" required />
+                    <input className='form-control is-invalid' onChange={handleChange} type="email" id="email" name="email" placeholder="exameple@gmail.com" required />
                     <div className="invalid-feedback" id="errorCode">*Campo requerido*</div>
                     <div className="valid-feedback">* Correcto * </div>
                 </div>
@@ -76,7 +101,7 @@ function formRegister (){
                     <label htmlFor="fechaNacimiento">Fecha nacimiento</label>
                 </div>
                 <div className="col-5">
-                    <input className='form-control is-invalid' type="date" id="fechaNacimiento" name="fechaNacimiento" required />
+                    <input className='form-control is-invalid' onChange={handleChange} type="date" id="birthday" name="birthday" required />
                     <div className="invalid-feedback" id="errorCode">*Campo requerido*</div>
                     <div className="valid-feedback">* Correcto * </div>
                 </div>
@@ -85,7 +110,7 @@ function formRegister (){
                     <label htmlFor="contrasenia">Contraseña</label>
                 </div>
                 <div className="col-5">
-                    <input className='form-control is-invalid' type="password" id="contrasenia" name="contrasenia" required />
+                    <input className='form-control is-invalid' onChange={handleChange} type="password" id="password" name="password" required />
                     <div className="invalid-feedback" id="errorCode">*Campo requerido*</div>
                     <div className="valid-feedback">* Correcto * </div>
                 </div>
@@ -94,7 +119,9 @@ function formRegister (){
 
 
             <button className='btn btn-primary' type="submit" >Registrar</button>
-            <button className='btn btn-secondary' type="button" >Cancelar</button>
+              <Link className=" btn btn-secondary Link" to="/">Cancelar </Link>
+
+           
         </div>
     </form >
 
@@ -102,7 +129,7 @@ function formRegister (){
 
 }
 
-export default formRegister
+export default FormRegister
 
 
     

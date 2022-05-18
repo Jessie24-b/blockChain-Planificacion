@@ -26,3 +26,11 @@
 
     border-bottom: 1px solid black;
 }
+.Link{
+    color:white;
+    text-decoration: none;
+}
+.Link:hover {
+    color: white;
+    text-decoration: none;
+  }
