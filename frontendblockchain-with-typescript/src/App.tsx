@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles/Login.css';
 import './styles/formRegister.css';
+import './styles/navbar.css';
 import './js/validationForm';
 import './App.css';
 import Login from './components/loginComponent'

@@ -11,6 +11,7 @@ namespace apiBlockChain.Models
         public string Server { get; set; }
         public string Database { get; set; }
         public string Collection { get; set; }
+
     }
 
     public interface IBlockChainSetting

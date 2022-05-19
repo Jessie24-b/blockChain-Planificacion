@@ -23,7 +23,7 @@ export default function Login()
 
         const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault()
-             GetUsers(inputValues.user);
+             GetUsers(inputValues.user,inputValues.password);
                
         }
 

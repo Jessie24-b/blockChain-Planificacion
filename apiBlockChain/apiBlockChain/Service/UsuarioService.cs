@@ -28,9 +28,9 @@ namespace apiBlockChain.Service
             return data;
         }
 
-        public Usuario GetUsuario(string user)
+        public Usuario GetUsuario(string user, string password)
         {
-            var filter = Builders<Usuario>.Filter.Eq(Usuario => Usuario.User, user);
+            var filter = Builders<Usuario>.Filter.Eq(Usuario=>Usuario.User, user);
             var data = _usuario.Find(filter).FirstOrDefault();
 
             return data;

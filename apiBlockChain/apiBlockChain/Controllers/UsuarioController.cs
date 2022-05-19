@@ -40,13 +40,25 @@ namespace apiBlockChain.Controllers
 
         }
 
-        [HttpGet("{user}")]
-        public ActionResult<Usuario> getUsuario(String user)
+        [HttpGet]
+        [Route("getUsuario/{user}/{password}")]
+        public ActionResult<Boolean> getUsuario(String user, String password)
         {
+            Boolean estado = false;
+            var usuario= _usuarioService.GetUsuario(user,password);
 
-            var usuario= _usuarioService.GetUsuario(user);
+            if (usuario is null)
+            {
+                estado = false;
+            }
+            else {
+                if (usuario.User.Equals(user) && usuario.Contrasena.Equals(password))
+                {
+                    estado = true;
+                }
+            }
 
-            return Ok(usuario);
+            return estado;
 
         }
 
