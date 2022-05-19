@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from "react-router-dom";
 
 
 function Navbar(){
@@ -24,7 +25,7 @@ function Navbar(){
                 <li className="nav-item">
               
                 <i></i>
-                    <a className="nav-link disabled" href="#">Configuraci&oacute;n </a>
+                    <Link className="nav-link" to="/Configuracion">Configuraci&oacute;n </Link>
                 </li>
 
                 <div className="row">

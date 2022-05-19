@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace apiBlockChain.Controllers
 {
-    [Route("apiConfig/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ConfigController : ControllerBase
     {
@@ -32,7 +32,7 @@ namespace apiBlockChain.Controllers
 
 
         [HttpPost]
-        public ActionResult<Configuracion> InserUsuario(Configuracion configuracion)
+        public ActionResult<Configuracion> InserConfiguracion(Configuracion configuracion)
         {
 
             _configService.InsertConfiguracion(configuracion);

@@ -1,16 +1,24 @@
 import axios from "axios";
-import {User} from '../types'
 
- export default function getUsers ()  {   
 
-      return   axios.get<User>('https://localhost:44317/api/Usuario').then((response ) => {
-            console.log(JSON.stringify(response.data))
-      });
-      /* response.then((value) => {
-            console.log(value.user);
+
+
+ export default function GetUsers (user: string)  {   
+     
+     
+
+        axios.get('https://localhost:44317/api/Usuario/'+user).then(response  => {
+           console.log(response.data);
+            if(response.status === 200){
+                  console.log("perfect");
+                  window.location.href  = "/Home";
+            }else{
+                  console.log("este usuario no existe");
+            }
+
            
-             return response
-          }); */
+      });
 
+      return true;
      
 }

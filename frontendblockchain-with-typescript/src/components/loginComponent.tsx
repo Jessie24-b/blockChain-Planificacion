@@ -1,6 +1,6 @@
 import { useState } from "react"
 import {User} from '../types'
-import getUsers from '../service/loginService'
+import GetUsers from '../service/loginService'
 import { Link } from "react-router-dom"
 
 interface LoginState {
@@ -23,8 +23,8 @@ export default function Login()
 
         const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault()
-            window.location.href  = "/Home";
-           // console.log( getUsers());
+             GetUsers(inputValues.user);
+               
         }
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,9 +32,7 @@ export default function Login()
             setInputValues({
                 ...inputValues,
                 [e.target.name]: e.target.value
-            })
-
-               
+            })             
         }
 
         return (
