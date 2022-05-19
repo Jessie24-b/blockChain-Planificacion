@@ -1,10 +1,11 @@
 export default interface User {
-    username: string;
-    name: string;
-    password: string;
-    lastName: string;
-    email: string;
-    birthday: string;
+    user: string;
+    nombre: string;
+    apellido: string;
+    correo: string;
+    fechaNacimiento: string;
+    contrasena: string;
+
 }
 
 
