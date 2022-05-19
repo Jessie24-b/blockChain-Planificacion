@@ -23,10 +23,10 @@ namespace apiBlockChain.Controllers
 
 
         [HttpGet]
-        public ActionResult<List<Usuario>> GetUser()
+        public async Task<IActionResult> GetUser()
         {
 
-            return _usuarioService.GetList();
+            return Ok(await _usuarioService.GetList());
 
         }
 
@@ -35,6 +35,16 @@ namespace apiBlockChain.Controllers
         {
 
             _usuarioService.InsertUsuario(usuario);
+
+            return Ok(usuario);
+
+        }
+
+        [HttpGet("{user}")]
+        public ActionResult<Usuario> getUsuario(String user)
+        {
+
+            var usuario= _usuarioService.GetUsuario(user);
 
             return Ok(usuario);
 

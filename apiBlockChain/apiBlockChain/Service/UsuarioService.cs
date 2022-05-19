@@ -1,4 +1,5 @@
 ﻿using apiBlockChain.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -20,13 +21,20 @@ namespace apiBlockChain.Service
             _usuario = database.GetCollection<Usuario>(setting.Collection);
         }
 
-        public List<Usuario> GetList()
+        public async Task<List<Usuario>> GetList()
         {
-           var data = _usuario.Find(d => true).ToList();
+           var data = await _usuario.FindAsync(d => true).Result.ToListAsync();
 
             return data;
         }
 
+        public Usuario GetUsuario(string user)
+        {
+            var filter = Builders<Usuario>.Filter.Eq(Usuario => Usuario.User, user);
+            var data = _usuario.Find(filter).FirstOrDefault();
+
+            return data;
+        }
 
         public Usuario InsertUsuario(Usuario usuario)
         {
