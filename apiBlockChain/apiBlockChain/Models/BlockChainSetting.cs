@@ -11,7 +11,7 @@ namespace apiBlockChain.Models
         public string Server { get; set; }
         public string Database { get; set; }
         public string Collection { get; set; }
-
+        public string CollectionConfig { get; set; }
     }
 
     public interface IBlockChainSetting
@@ -20,5 +20,6 @@ namespace apiBlockChain.Models
         string Server { get; set; }
         string Database { get; set; }
         string Collection { get; set; }
+        public string CollectionConfig { get; set; }
     }
 }

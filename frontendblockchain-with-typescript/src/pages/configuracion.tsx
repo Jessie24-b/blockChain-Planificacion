@@ -15,10 +15,12 @@ export default class Configuracion extends Component {
         };
       }
 
+      
 
         handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
         console.log(this.state);
-        const response=  axios.post<IConfiguracion>('https://localhost:44317/api/Usuario/',this.state).then(response => response.data)  
+        const response=  axios.post('https://localhost:44317/api/Config/',this.state)
+        .then(response => response.data)  
         return response
                  
         }

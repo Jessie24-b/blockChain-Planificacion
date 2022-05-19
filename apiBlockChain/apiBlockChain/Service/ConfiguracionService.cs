@@ -15,7 +15,7 @@ namespace apiBlockChain.Service
 
             var cliente = new MongoClient(setting.Server);
             var database = cliente.GetDatabase(setting.Database);
-            _configuracion= database.GetCollection<Configuracion>(setting.Collection);
+            _configuracion= database.GetCollection<Configuracion>(setting.CollectionConfig);
         }
 
         public async Task<List<Configuracion>> GetList()

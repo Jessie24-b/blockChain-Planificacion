@@ -3,7 +3,7 @@ export interface User {
     password: string
 }
 
-export interface Csonfiguracion {
+export interface Configuracion {
     key: string
     value: string 
 }
