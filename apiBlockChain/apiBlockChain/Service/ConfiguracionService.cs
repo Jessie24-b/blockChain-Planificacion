@@ -33,6 +33,24 @@ namespace apiBlockChain.Service
             return configuracion;
 
         }
+        public void UpdateConfig(string id, Configuracion config)
+        {
+            _configuracion.ReplaceOne(config => config.Id == id, config);
+
+        }
+        public void DeleteConfig(string id) {
+            _configuracion.DeleteOne(d => d.Id == id);
+           
+        }
+
+        public Configuracion GetConfig(string id)
+        {          
+            var filter = Builders<Configuracion>.Filter.Eq(Configuracion => Configuracion.Id, id);
+            var data = _configuracion.Find(filter).FirstOrDefault();
+
+            return data;
+            
+        }
 
     }
 }

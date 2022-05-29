@@ -19,30 +19,56 @@ namespace apiBlockChain.Controllers
 
         public ConfigController(ConfiguracionService configuracionService) {
 
-            
-             _configService = configuracionService;
+
+            _configService = configuracionService;
         }
-       
+
 
         [HttpGet]
         public async Task<IActionResult> GetConfiguraciones()
         {
 
             return Ok(await _configService.GetList());
-           
+
 
         }
 
-        
-       [HttpPost]
-       public ActionResult<Configuracion> InserConfiguracion(Configuracion configuracion)
-       {
+        [HttpGet]
+        [Route("getConfig/{id}")]
+        public ActionResult<Configuracion> GetConfig(string id)
+        {
 
-           _configService.InsertConfiguracion(configuracion);
+           var configuracion = _configService.GetConfig(id);
 
-           return Ok(configuracion);
+            return Ok(configuracion);
 
-       }
-       
+        }
+
+
+        [HttpPost]
+        public ActionResult<Configuracion> InserConfiguracion(Configuracion configuracion)
+        {
+
+            _configService.InsertConfiguracion(configuracion);
+
+            return Ok(configuracion);
+
+        }
+
+        [HttpPut]
+        public ActionResult Update(Configuracion config) {
+            _configService.UpdateConfig(config.Id, config);
+
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(string id)
+        {
+            _configService.DeleteConfig(id);
+
+            return Ok();
+        }
+
     }
 }
