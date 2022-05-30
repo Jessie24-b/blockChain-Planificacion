@@ -35,6 +35,7 @@ namespace apiBlockChain
                 (d => d.GetRequiredService<IOptions<BlockChainSetting>>().Value);
             services.AddSingleton<UsuarioService>();
             services.AddSingleton<ConfiguracionService>();
+            services.AddSingleton<MempoolService>();
 
             services.AddCors(Options =>
             {
