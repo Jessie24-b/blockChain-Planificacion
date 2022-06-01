@@ -24,9 +24,28 @@ namespace apiBlockChain.Controllers
         public ActionResult<Mempool> InsertMeempool(Mempool mempool)
         {
 
+
             _mempoolService.InsertMempool(mempool);
 
             return Ok(mempool);
+
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteMempool(string id)
+        {
+            _mempoolService.DeleteMempool(id);
+
+            return Ok();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetListMempool()
+        {
+
+            return Ok(await _mempoolService.GetListMempool());
+
 
         }
     }

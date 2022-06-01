@@ -30,5 +30,19 @@ namespace apiBlockChain.Service
             return mempool;
 
         }
+
+        public async Task<List<Mempool>> GetListMempool()
+        {
+            var data = await _mempool.FindAsync(d => true).Result.ToListAsync();
+
+            return data;
+        }
+
+        public void DeleteMempool(string id)
+        {
+            _mempool.DeleteOne(d => d.Id == id);
+
+        }
+
     }
 }
