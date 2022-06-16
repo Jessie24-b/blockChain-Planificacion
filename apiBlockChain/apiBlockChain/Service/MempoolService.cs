@@ -44,5 +44,14 @@ namespace apiBlockChain.Service
 
         }
 
+        public Mempool GetFile(string id)
+        {
+            var filter = Builders<Mempool>.Filter.Eq(Mempool => Mempool.Id, id);
+            var data = _mempool.Find(filter).FirstOrDefault();
+
+            return data;
+
+        }
+
     }
 }

@@ -48,5 +48,17 @@ namespace apiBlockChain.Controllers
 
 
         }
+
+
+        [HttpGet]
+        [Route("{id}")]
+        public ActionResult<Configuracion> GetFile(string id)
+        {
+
+            var configuracion = _mempoolService.GetFile(id);
+
+            return Ok(configuracion);
+
+        }
     }
 }

@@ -13,6 +13,9 @@ namespace apiBlockChain.Models
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string Id { get; set; }
 
+        [BsonElement("nombre")]
+        public string Nombre { get; set; }
+
         [BsonElement("archivo")]
         public string Archivo { get; set; }
 
