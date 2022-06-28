@@ -70,20 +70,18 @@ namespace apiBlockChain.Controllers
         {
 
             minado Logic = new minado();           
-            while (Logic.blockValidate != "Vacio") {
+          //  while () {
                 Thread p1 = new Thread(() => Logic.GetSha256(block));
                 p1.Start();
+              
+            //p1.Abort();
+            while (Logic.blockValidate == "Vacio") {
                 Thread.Sleep(1000);
-
-                if (Logic.blockValidate != "Vacio")
-                {
-                    p1.Abort();
-                }
-                
             }
-           
+            //}
 
-            return Logic.blockValidate;
+           // p1.Abort();
+            return block.ToString();
             
         }
 

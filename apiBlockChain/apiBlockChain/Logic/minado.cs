@@ -33,7 +33,7 @@ namespace apiBlockChain.Logic
                     sb.AppendFormat("{0:x2}", stream[i]);
                 }
 
-
+               
                 if (sb.ToString().Substring(0, 4) == "0000")
                 {
                     stop = false;
