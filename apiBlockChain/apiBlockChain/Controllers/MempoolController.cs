@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading;
+using apiBlockChain.Logic;
 
 namespace apiBlockChain.Controllers
 {
@@ -60,5 +62,35 @@ namespace apiBlockChain.Controllers
             return Ok(configuracion);
 
         }
+
+      
+        [HttpPost]
+        [Route("minado/")]
+        public string Minado(Block block)
+        {
+
+            minado Logic = new minado();           
+            while (Logic.blockValidate != "Vacio") {
+                Thread p1 = new Thread(() => Logic.GetSha256(block));
+                p1.Start();
+                Thread.Sleep(1000);
+
+                if (Logic.blockValidate != "Vacio")
+                {
+                    p1.Abort();
+                }
+                
+            }
+           
+
+            return Logic.blockValidate;
+            
+        }
+
+
+      
+
+
+
     }
 }
