@@ -40,7 +40,7 @@ namespace apiBlockChain.Models
 
         public override string ToString()
         {
-            return IdBloque+FechaMinado+Prueba+Milisegundos+Archivos+HashPrevio+Hash;
+            return IdBloque+FechaMinado+Prueba+Milisegundos+HashPrevio;
         }
 
         public string ConvertListToString() {

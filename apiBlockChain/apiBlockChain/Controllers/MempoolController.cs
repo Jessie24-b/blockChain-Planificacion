@@ -77,12 +77,12 @@ namespace apiBlockChain.Controllers
         {
             LogicMinado log = new LogicMinado();
 
-            block=log.getBlock(block);
+             block=log.getBlock(block);
 
             _minadoService.InsertBlock(block);
-
-            return Ok(block); 
-            
+           
+             return Ok(block); 
+                   
         }
 
        
