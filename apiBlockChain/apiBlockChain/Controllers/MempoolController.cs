@@ -51,7 +51,7 @@ namespace apiBlockChain.Controllers
 
         }
 
-
+        /*
         [HttpGet]
         [Route("{id}")]
         public ActionResult<Configuracion> GetFile(string id)
@@ -62,8 +62,20 @@ namespace apiBlockChain.Controllers
             return Ok(configuracion);
 
         }
+        */
 
-      
+        [HttpGet]
+        [Route("lastBlock")]
+        public ActionResult<Mempool> GetLastBlock()
+        {
+
+            var mempool = _mempoolService.GetLastBlock();
+
+            return Ok(mempool);
+
+        }
+
+        /*--------------------------------------------------------*/
         [HttpPost]
         [Route("minado/")]
         public string Minado(Block block)

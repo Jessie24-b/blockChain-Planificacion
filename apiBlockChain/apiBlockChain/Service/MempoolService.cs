@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using apiBlockChain.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 
@@ -50,6 +51,19 @@ namespace apiBlockChain.Service
             var data = _mempool.Find(filter).FirstOrDefault();
 
             return data;
+
+        }
+
+        public Mempool GetLastBlock()
+        {
+
+            
+            var sort = Builders<Mempool>.Sort.Descending("nombre");
+            // var limit = sort.limit(1);
+             var data = _mempool.Find(Builders<Mempool>.Filter.Empty).Limit(1).Sort("nombre: -1");
+
+
+            return (Mempool)data;
 
         }
 
