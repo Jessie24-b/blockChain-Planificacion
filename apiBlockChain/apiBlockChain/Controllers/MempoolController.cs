@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
-using apiBlockChain.Logic;
 using apiBlockChain.LogicB;
 
 namespace apiBlockChain.Controllers
