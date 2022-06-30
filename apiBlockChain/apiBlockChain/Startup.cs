@@ -36,6 +36,7 @@ namespace apiBlockChain
             services.AddSingleton<UsuarioService>();
             services.AddSingleton<ConfiguracionService>();
             services.AddSingleton<MempoolService>();
+            services.AddSingleton<MinadoService>();
 
             services.AddCors(Options =>
             {

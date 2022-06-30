@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
 using apiBlockChain.Logic;
+using apiBlockChain.LogicB;
 
 namespace apiBlockChain.Controllers
 {
@@ -16,11 +17,15 @@ namespace apiBlockChain.Controllers
     {
 
         public MempoolService _mempoolService;
+        public MinadoService _minadoService;
+        public LogicMinado logM;
 
-        public MempoolController(MempoolService mempoolService)
+        public MempoolController(MempoolService mempoolService, MinadoService minadoService)
         {
 
+
             _mempoolService = mempoolService;
+            _minadoService = minadoService;
         }
         [HttpPost]
         public ActionResult<Mempool> InsertMeempool(Mempool mempool)
@@ -63,30 +68,28 @@ namespace apiBlockChain.Controllers
 
         }
 
+
       
         [HttpPost]
         [Route("minado/")]
-        public string Minado(Block block)
+        public ActionResult<Block> Minado(Block block)
         {
+            LogicMinado log = new LogicMinado();
 
-            minado Logic = new minado();           
-          //  while () {
-                Thread p1 = new Thread(() => Logic.GetSha256(block));
-                p1.Start();
-              
-            //p1.Abort();
-            while (Logic.blockValidate == "Vacio") {
-                Thread.Sleep(1000);
-            }
-            //}
+            block=log.getBlock(block);
 
-           // p1.Abort();
-            return block.ToString();
+            _minadoService.InsertBlock(block);
+
+            return Ok(block); 
             
         }
 
+       
 
-      
+
+
+
+
 
 
 

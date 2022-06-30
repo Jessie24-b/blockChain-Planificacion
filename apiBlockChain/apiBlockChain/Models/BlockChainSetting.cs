@@ -13,6 +13,7 @@ namespace apiBlockChain.Models
         public string Collection { get; set; }
         public string CollectionConfig { get; set; }
         public string MempoolCollection { get; set; }
+        public string MinadoCollection { get; set; }
     }
 
     public interface IBlockChainSetting
@@ -23,5 +24,6 @@ namespace apiBlockChain.Models
         string Collection { get; set; }
         public string CollectionConfig { get; set; }
         public string MempoolCollection { get; set; }
+        public string MinadoCollection { get; set; }
     }
 }

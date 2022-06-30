@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using apiBlockChain.Models;
 using System.Security.Cryptography;
 using System.Text;
+using System.Diagnostics;
+using System.Threading;
+using System.Timers;
 
 namespace apiBlockChain.LogicB
 {
@@ -32,28 +35,78 @@ namespace apiBlockChain.LogicB
             return sb.ToString();
         }
 
-        public DateTime generateFechaHora() {
-            DateTime localDate = DateTime.Now;
-            localDate.ToString("en-GB");
-            string datetime = DateTime.Now.ToString("hh:mm:ss tt");
-            
+        public string generateFechaHora()
+        {
+         
+           string localDate= DateTime.Now.ToString("yyyyMMddTHHmmss");
+
+
             return localDate;
         }
 
-        public long generateDateToInt(DateTime fechaMinado) {
-            DateTime centuryBegin = new DateTime(2001, 1, 1);
-            return (fechaMinado.Ticks - centuryBegin.Ticks);
+        public Block getBlock(Block b)
+        {
+            string hash;
+            int interval = 1000;
+            var sw = Stopwatch.StartNew();
+            int prueba = 0;
            
+            string fechaMinado;
+            string milisegundos = "";
+
+            do
+            {
+
+
+
+                
+                fechaMinado = generateFechaHora();
+                milisegundos = (sw.ElapsedMilliseconds).ToString();
+
+
+                crearBloque(b,fechaMinado,milisegundos,prueba);
+
+
+                hash = GenerateHash256(b.ToString());
+
+                if (sw.ElapsedMilliseconds == interval)
+                {
+                    prueba = 0;
+                    sw.Reset();
+                    sw.Start();
+                }
+                else
+                {
+                    prueba++;
+                }
+
+
+
+            } while (!hash.Substring(0, 4).Equals("0000"));
+            sw.Stop();
+
+            b.Hash = hash;
+            
+            return b;
+
+
+
         }
 
-        public string generateHash(string sha256) {
+        public Block crearBloque(Block b,string fechaMinado,string milisegundos,int prueba) {
 
-            GenerateHash256(sha256);
+            b.Milisegundos = milisegundos;
+            b.FechaMinado = fechaMinado.ToString();
+            b.Prueba = prueba;
 
-            return "";
+            return b;
         }
 
-  
+
+
+
+
+
 
     }
 
