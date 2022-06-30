@@ -76,7 +76,6 @@ namespace apiBlockChain.Controllers
         public ActionResult<Block> Minado(Block block)
         {
             LogicMinado log = new LogicMinado();
-
              block=log.getBlock(block);
 
             _minadoService.InsertBlock(block);
@@ -85,7 +84,22 @@ namespace apiBlockChain.Controllers
                    
         }
 
-       
+
+        [HttpGet]
+        [Route("lastBlock/")]
+        public ActionResult<Block> GetLastBlock()
+        {
+        
+            return Ok(_minadoService.GetLastBlock().Result);
+
+        }
+
+
+
+
+
+
+
 
 
 

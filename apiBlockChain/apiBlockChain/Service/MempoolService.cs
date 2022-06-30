@@ -54,18 +54,7 @@ namespace apiBlockChain.Service
 
         }
 
-        public Mempool GetLastBlock()
-        {
-
-            
-            var sort = Builders<Mempool>.Sort.Descending("nombre");
-            // var limit = sort.limit(1);
-             var data = _mempool.Find(Builders<Mempool>.Filter.Empty).Limit(1).Sort("nombre: -1");
-
-
-            return (Mempool)data;
-
-        }
+       
 
     }
 }
