@@ -24,6 +24,9 @@ namespace apiBlockChain.LogicB
         {
         }
 
+
+         
+
         public string GenerateHash256(string text) {
 
             SHA256 sha256 = SHA256Managed.Create();
@@ -46,6 +49,7 @@ namespace apiBlockChain.LogicB
 
         public Block getBlock(Block b)
         {
+            string documentos = GenerateHash256(b.ConvertListToString());
             string hash;
             int interval = 1000;
             var sw = Stopwatch.StartNew();
@@ -66,9 +70,9 @@ namespace apiBlockChain.LogicB
 
                 crearBloque(b,fechaMinado,milisegundos,prueba);
 
-
-                hash = GenerateHash256(b.ToString());
-
+                
+                hash = GenerateHash256(b.ToString()+documentos);
+               
                 if (sw.ElapsedMilliseconds == interval)
                 {
                     prueba = 0;

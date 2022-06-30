@@ -9,25 +9,12 @@ namespace apiBlockChain.Models
     public class Block
     {
 
-        public Block(int _idBloque, string _fechaMinado, int _prueba, string _milisegundos,string _archivos
-            ,string _hashPrevio,string _hash)
-        {
-
-            IdBloque = _idBloque;
-            FechaMinado = _fechaMinado;
-            Prueba = _prueba;
-            Milisegundos = _milisegundos;
-            Archivos = _archivos;
-            HashPrevio = _hashPrevio;
-            Hash = _hash;
-
-        }
         public Block() { 
         }
 
-        /*[BsonId]
+        [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
-        public string  Id { get; set; }*/
+        public string  Id { get; set; }
 
         [BsonElement("idBloque")]
         public int IdBloque { get; set; }
@@ -42,7 +29,7 @@ namespace apiBlockChain.Models
         public string Milisegundos { get; set; }
 
         [BsonElement("archivos")]
-        public string Archivos { get; set; }
+        public List<string> Archivos { get; set; }
 
         [BsonElement("hashPrevio")]
         public string HashPrevio { get; set; }
@@ -53,7 +40,16 @@ namespace apiBlockChain.Models
 
         public override string ToString()
         {
-            return IdBloque+FechaMinado+Prueba+Milisegundos+Archivos+HashPrevio+Hash;
+            return IdBloque+FechaMinado+Prueba+Milisegundos+HashPrevio;
+        }
+
+        public string ConvertListToString() {
+            List<string> list = Archivos;
+            char delim = ',';
+
+            string str = String.Join(delim, list);
+
+            return str;
         }
 
 

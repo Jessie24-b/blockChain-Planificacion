@@ -28,5 +28,33 @@ namespace apiBlockChain.Service
             return bloq;
 
         }
+
+        public async Task<Block> GetLastBlock()
+        {
+
+            try
+            {
+                List<Block> listBlock = await _minado.Find(d => true).ToListAsync();
+
+                if (listBlock.Count == 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    var prueba= listBlock[listBlock.Count - 1];
+                    return prueba;
+                }
+
+
+            }
+            catch(Exception e) {
+                throw e;
+            }
+            // var sort = Builders<Mempool>.Sort.Descending("nombre");
+            // var limit = sort.limit(1);
+            //var data = _mempool.Find(Builders<Mempool>.Filter.Empty).Limit(1).Sort("nombre: -1");
+
+        }
     }
 }

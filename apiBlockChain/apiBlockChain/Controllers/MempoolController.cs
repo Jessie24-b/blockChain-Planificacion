@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
-using apiBlockChain.Logic;
 using apiBlockChain.LogicB;
 
 namespace apiBlockChain.Controllers
@@ -56,7 +55,7 @@ namespace apiBlockChain.Controllers
 
         }
 
-
+        /*
         [HttpGet]
         [Route("{id}")]
         public ActionResult<Configuracion> GetFile(string id)
@@ -67,6 +66,7 @@ namespace apiBlockChain.Controllers
             return Ok(configuracion);
 
         }
+        */
 
 
       
@@ -75,16 +75,30 @@ namespace apiBlockChain.Controllers
         public ActionResult<Block> Minado(Block block)
         {
             LogicMinado log = new LogicMinado();
-
-            block=log.getBlock(block);
+             block=log.getBlock(block);
 
             _minadoService.InsertBlock(block);
-
-            return Ok(block); 
-            
+           
+             return Ok(block); 
+                   
         }
 
-       
+
+        [HttpGet]
+        [Route("lastBlock/")]
+        public ActionResult<Block> GetLastBlock()
+        {
+        
+            return Ok(_minadoService.GetLastBlock().Result);
+
+        }
+
+
+
+
+
+
+
 
 
 
