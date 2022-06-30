@@ -48,6 +48,8 @@ namespace apiBlockChain.Service
             var filter = Builders<Configuracion>.Filter.Eq(Configuracion => Configuracion.Id, id);
             var data = _configuracion.Find(filter).FirstOrDefault();
 
+          
+
             return data;
             
         }
