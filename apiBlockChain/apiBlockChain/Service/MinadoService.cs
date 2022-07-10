@@ -20,6 +20,13 @@ namespace apiBlockChain.Service
             _minado = database.GetCollection<Block>(setting.MinadoCollection);
         }
 
+        public async Task<List<Block>> GetList()
+        {
+            var data = await _minado.FindAsync(d => true).Result.ToListAsync();
+
+            return data;
+        }
+
         public Block InsertBlock(Block bloq)
         {
 
