@@ -8,17 +8,18 @@ using System.Text;
 using System.Diagnostics;
 using System.Threading;
 using System.Timers;
+using apiBlockChain.Interfaces;
 
 namespace apiBlockChain.LogicB
 {
     public class LogicMinado
     {
         public BloqueB bloque;
-        public LogicMinado(BloqueB _bloque)
-        {
-         
-          
-        }
+
+       public IMinadoService iMinadoService = new IMinadoService();
+      
+
+       
 
         public LogicMinado()
         {
@@ -86,7 +87,7 @@ namespace apiBlockChain.LogicB
 
 
 
-            } while (!hash.Substring(0, 4).Equals("0000"));
+            } while (iMinadoService.verifyConditionHash(hash));
             sw.Stop();
 
             b.Hash = hash;
